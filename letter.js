@@ -7,28 +7,31 @@ function Letter(word) {
     }, []);
     this.hasWon = false;
     this.correctGuess = false;
-    this.displayLetters = function() {
-        this.letterObj.forEach(function(eachLetter) {
-            if (eachLetter.guessed === false) {
-                console.log("_ ");
-            } else if (eachLetter.guessed === true) {
-                console.log(eachLetter.letter + " ");
-            }
-        });
-    }
-    this.checkWin = function() {
-        var arr = [];
-        this.letterObj.forEach(function(eachLetter) {
-            arr.push(eachLetter.guessed);
-            return arr;
-        });
-        arr.sort(function(a, b) {
-            return a - b;
-        });
-        if (arr[0] === true) {
-            this.hasWon = true;
-        };
+
+};
+
+Letter.prototype.checkWin = function() {
+    var arr = [];
+    this.letterObj.forEach(function(eachLetter) {
+        arr.push(eachLetter.guessed);
+        return arr;
+    });
+    arr.sort(function(a, b) {
+        return a - b;
+    });
+    if (arr[0] === true) {
+        this.hasWon = true;
     };
 };
+
+Letter.prototype.displayLetters = function() {
+    this.letterObj.forEach(function(eachLetter) {
+        if (eachLetter.guessed === false) {
+            console.log("_ ");
+        } else if (eachLetter.guessed === true) {
+            console.log(eachLetter.letter + " ");
+        }
+    });
+}
 
 module.exports = Letter;
